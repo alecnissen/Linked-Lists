@@ -31,6 +31,45 @@ class linkedList {
     return this.size;
   } 
 
+  getFirst() { 
+    return this.head;
+  } 
+
+  // if the value is null return the value 
+
+  getLast() { 
+ if (this.isEmpty()) { 
+    return null;
+ }
+ let node = this.head;
+
+ while(node) { 
+    if (!node.next) { 
+        return node;
+    }
+    node = node.next;
+ }
+  } 
+
+  pop() { 
+    if (this.isEmpty()) 
+    return null; 
+
+    if (this.head.next == null) { 
+        return null;
+    } 
+
+    let second_last = this.head; 
+
+    while(second_last.next.next != null) 
+        second_last = second_last.next;
+
+        second_last.next = null;
+
+        return this.head;
+} 
+  
+
   prepend(value) { 
     const node = new Node(value);
     if (this.isEmpty()) { 
@@ -40,6 +79,49 @@ class linkedList {
         this.head = node;
     }
     this.size++
+  } 
+
+  append(value) { 
+    const node = new Node(value);
+    if(this.isEmpty()) { 
+        this.head = node;
+    } else { 
+        let prev = this.head;
+        while(prev.next) { 
+            prev = prev.next;
+        }
+        prev.next = node;
+    }
+    this.size++
+  } 
+
+  at(index) { 
+    let current = this.head;
+    let count = 0;
+
+    while(current !== null) { 
+        if (count == index) 
+            return current.value
+            count++ 
+            current = current.next;
+        
+    }
+  } 
+
+  find(value) { 
+    if (this.isEmpty()) { 
+        return -1;
+    }
+    let i = 0;
+    let curr = this.head;
+    while(curr) { 
+        if (curr.value === value) { 
+            return i; 
+        } 
+        curr = curr.next;
+        i++
+    }
+    return -1;
   }
 
   print() { 
@@ -59,17 +141,36 @@ class linkedList {
 
 const list = new linkedList() 
 
-console.log(list.isEmpty()); 
-console.log(list.getSize()); 
+// console.log(list.isEmpty()); 
+// console.log(list.getSize()); 
 
 
-
-list.prepend(30);
-list.prepend(10);
-list.prepend(20); 
+list.append(5);
+list.append(10);
+list.append(20); 
+list.append(30);
+list.append(40);
+list.append(50);
 list.print();
+// console.log(list.getFirst());
+// console.log(list.getLast());
+// console.log(list.at(4));
+// list.pop();
+console.log(list.find(5));
+// list.print();
 
-console.log(list.getSize()); 
+// console.log(list.getSize());  
+
+// console.log(list.getFirst());
+
+// console.log(list.getLast());
+
+
+
+
+
+
+
 
 
 // const n1 = new Node(100);
