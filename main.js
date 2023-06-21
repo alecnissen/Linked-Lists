@@ -35,7 +35,16 @@ class linkedList {
     return this.head;
   } 
 
-  // if the value is null return the value 
+  convertToString() { 
+    let current = this.head;
+    let str = "";
+
+    while (current) { 
+        str += current.value + " ";
+        current = current.next;
+    }
+    return str;
+  }
 
   getLast() { 
  if (this.isEmpty()) { 
@@ -122,6 +131,32 @@ class linkedList {
         i++
     }
     return -1;
+  } 
+
+  contains(value) { 
+    if (this.isEmpty()) { 
+        return false;
+    }
+    let curr = this.head;
+    while(curr) { 
+        if (curr.value === value) { 
+            return true; 
+        } 
+        curr = curr.next;
+    }
+    return false;
+  } 
+
+  toString() { 
+    let currentNode = this.head; 
+    let result = ''; 
+
+    while (currentNode !== null) { 
+        result += `(${currentNode.value})->`;
+        currentNode = currentNode.next;
+    } 
+    result += 'null';
+    return result
   }
 
   print() { 
@@ -145,18 +180,37 @@ const list = new linkedList()
 // console.log(list.getSize()); 
 
 
+
+
+
 list.append(5);
 list.append(10);
 list.append(20); 
 list.append(30);
 list.append(40);
-list.append(50);
-list.print();
+list.append(50); 
+list.append(60);
+
+console.log(list);
+
+// console.log(list.getSize());
+
+console.log(list.toString());
+
+// list.print();
 // console.log(list.getFirst());
 // console.log(list.getLast());
 // console.log(list.at(4));
 // list.pop();
-console.log(list.find(5));
+// console.log(list.find(5));
+
+
+
+// console.log(list.contains(5));
+
+
+
+
 // list.print();
 
 // console.log(list.getSize());  
